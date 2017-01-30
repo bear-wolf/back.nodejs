@@ -1,0 +1,14 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "description",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "bear",
+  "license": "ISC",
+  "devDependencies": {
+    "node-static": "^0.7.9"
+  }
+}

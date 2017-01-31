@@ -1,43 +1,32 @@
-/**
- * Created by admin on 30.01.2017.
- */
-// var http = require('http');
-// var static = require('node-static');
-// var file = new static.Server('.');
+var http = require('http'),
+    url = require('url'),
+    server = new http.Server(function (request, responce) {
+        var result='';
+        console.log(request.method, request.url);
+        console.log('about next');
 
-// var config = {
-//     port: 8081,
-//     start: function(req, res) {
-//         res.writeHead(200, {
-//             'Content-Type': 'text/plain',
-//             'Cache-Control': 'no-cache'
-//         });
-//         res.end("OK");
-//     }
-// }
-//
-// http.createServer(config.start()).listen(config.port);
-//
-// console.log('Server running on port: '+ config.port);
+        // var urlParsed = url.parse(request.url, true);
+        // console.log(urlParsed);
+        // if (urlParsed.pathname == '/echo' && urlParsed.query.message) {
+        //     result = urlParsed.query.message;
+        // } else {
+        //     responce.statusCode = 404;
+        //     result = 'Page no found';
+        // }
+        responce.end(result);
+    }),
+    emit = server.emit;
 
-var log = require('./logger')(module);
-var User = require('./user');
+server.listen(1337, '127.0.0.1');
 
-function run() {
-    var angy = new User('Andrew');
-    var piter = new User('Piter');
-    angy.hello(angy.name)
-    piter.hello(piter.name);
-    angy.goodBuy(angy.name)
-    piter.goodBuy(piter.name);
+// server.on('request', function (request, response) {
+//     response.end('Hello world')
+// });
 
-    log('Run successful');
+
+server.emit = function (event) {
+    console.log(event);
+    emit.apply(server, arguments);
 }
 
-
-if (module.parent) {
-    exports.run = run; // if other file required this module
-} else {
-    run(); // no connect
-}
-
+console.log('Server is started');

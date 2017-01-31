@@ -9,6 +9,9 @@
   "author": "bear",
   "license": "ISC",
   "devDependencies": {
-    "node-static": "^0.7.9"
+    "events": "^1.1.1",
+    "node-static": "^0.7.9",
+    "url": "^0.11.0",
+    "util": "^0.10.3"
   }
 }
